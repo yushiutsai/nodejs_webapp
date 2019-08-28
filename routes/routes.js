@@ -48,11 +48,11 @@ var appRouter = function (app) {
                   if (err) throw new Error(err);
                   // console.log(JSON.stringify(results));
                   console.log(results.primaryResults[0].toString());
-                  res.send(results.primaryResults[0].toString())
+               //    res.send(results.primaryResults[0].toString())
               });
       
           
-              // res.send(kql)
+              res.send(kql)
           } catch(e) {
               res.send(e)
               // console.log(e);
