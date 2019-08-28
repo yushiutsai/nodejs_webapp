@@ -21,6 +21,7 @@ var appRouter = function (app) {
 
      app.get("/plant/:limits",async function(req,res){ //當連線到Root/ 作出回應
           try {
+               const clusterName = "testdpwistron.southeastasia"
               // var result = await cacheConnection.hgetallAsync(req.params.name)
               const KustoClient = require("azure-kusto-data").Client;
               const KustoConnectionStringBuilder = require("azure-kusto-data").KustoConnectionStringBuilder;
@@ -48,11 +49,11 @@ var appRouter = function (app) {
                   if (err) throw new Error(err);
                   // console.log(JSON.stringify(results));
                   console.log(results.primaryResults[0].toString());
-               //    res.send(results.primaryResults[0].toString())
+                  res.send(results.primaryResults[0].toString())
               });
       
           
-              res.send(kql)
+          //     res.send(kql)
           } catch(e) {
               res.send(e)
               // console.log(e);
