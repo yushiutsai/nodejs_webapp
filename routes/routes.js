@@ -2,22 +2,22 @@ var appRouter = function (app) {
      app.get("/", function (req, res) {
           res.status(200).send({ message: 'Welcome to our restful API' });
      });
-     app.get("/getItems/:num", function (req, res) {
-          var num =req.params.num;
-          var data = {
-               'item1': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-76.jpg',
-               'item2': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-77.jpg',
-               'item3': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-78.jpg'
-          }     
-          res.status(200).send(data);
-     });
-     app.get("/getText/:txt", function (req, res) {
-          var text =req.params.txt;
-          var data = {
-               'text': text
-          }
-          res.status(200).send(data);
-     });
+     // app.get("/getItems/:num", function (req, res) {
+     //      var num =req.params.num;
+     //      var data = {
+     //           'item1': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-76.jpg',
+     //           'item2': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-77.jpg',
+     //           'item3': 'http://public-domain-photos.com/free-stock-photos-1/flowers/cactus-78.jpg'
+     //      }     
+     //      res.status(200).send(data);
+     // });
+     // app.get("/getText/:txt", function (req, res) {
+     //      var text =req.params.txt;
+     //      var data = {
+     //           'text': text
+     //      }
+     //      res.status(200).send(data);
+     // });
 
      app.get("/plant/:limits",async function(req,res){ //當連線到Root/ 作出回應
           try {
@@ -42,13 +42,14 @@ var appRouter = function (app) {
               kql += "            |summarize doc_count=count(), doc_avg = avg(cycleTimeTransfer) by plant,line,program,MachineGroupID ";
               kql += "            ) ";
               kql += "        on plant,line,program ";
-              kql += "|limit 2 ";
+          //     kql += "|limit 2 ";
+              kql += "|limit " + req.params.limits;
               // kql += "|count";
       
               client.execute("test-db", kql, (err, results) => {
                   if (err) throw new Error(err);
                   // console.log(JSON.stringify(results));
-                  console.log(results.primaryResults[0].toString());
+               //    console.log(results.primaryResults[0].toString());
                   res.send(results.primaryResults[0].toString())
               });
       

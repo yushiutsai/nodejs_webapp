@@ -1,0 +1,5 @@
+{
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "/subscriptions/7c1483c5-e5d5-42d7-9fd4-b0f6564f4735/resourceGroups/test-apiapp-wistron/providers/Microsoft.Web/sites/test-apiapp-wistron",
+  "appService.deploySubpath": ""
+}
